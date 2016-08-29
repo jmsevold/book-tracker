@@ -8,7 +8,7 @@ import {Router, Route, hashHistory, IndexRoute} from 'react-router'
 
 
 ReactDOM.render(
-    <Router history={hashHistory}>
+  <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={StartPage}></IndexRoute>
       <Route path="/book-form" component={BookForm}></Route>
