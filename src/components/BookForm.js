@@ -5,17 +5,19 @@ class BookForm extends Component{
   constructor(props,context){
     super(props,context);
     this.state = {
-      title: '',
-      totalPages: 0,
-      dailyGoal: 0,
-      completionDate: '',
-      startingPage: 0
+      book: { 
+            title: '',
+            totalPages: 0,
+            dailyGoal: 0,
+            completionDate: '',
+            startingPage: 0
+          }
     };
-    this.handleTitleChange     = this.handleTitleChange.bind(this);
-    this.handleTotalPageChange = this.handleTotalPageChange.bind(this);
-    this.handleDailyGoalChange = this.handleDailyGoalChange.bind(this);
+    this.handleTitleChange        = this.handleTitleChange.bind(this);
+    this.handleTotalPageChange    = this.handleTotalPageChange.bind(this);
+    this.handleDailyGoalChange    = this.handleDailyGoalChange.bind(this);
     this.handleStartingPageChange = this.handleStartingPageChange.bind(this);
-    this.handleCheckState = this.handleCheckState.bind(this);
+    this.handleCheckState         = this.handleCheckState.bind(this);
   }
 
   handleTitleChange(e){
@@ -54,11 +56,12 @@ class BookForm extends Component{
   render(){
   return(
     <div>
+    <p>Realistically, how many minutes can you commit to reading per day? Step away from the computer, and see how many pages you can read in that duration. That should be your daily goal.</p>
+    <span className="glyphicon glyphicon-plus"></span>
       Title: <input type="text" onChange={this.handleTitleChange}/><br/>
-      Total pages: <input type="text" onChange={this.handleTotalPageChange}/><br/>
       Daily Goal: <input type="text" onChange={this.handleDailyGoalChange}/><br/>
-      Completion Date: <input type="text"/><br/>
       Starting Page: <input type="text" onChange={this.handleStartingPageChange}/><br/>
+      Total length of book: <input type="text" onChange={this.handleTotalPageChange}/><br/>
       <button onClick={this.handleCheckState}>check state</button>
     </div>
   );
