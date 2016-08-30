@@ -6,7 +6,7 @@ const StartPage = () => {
   return(
     <div>
       <p>This app will help you stay consistent in reading your books.</p>
-      <Link to="/book-form"><button className="btn-success">Click here to begin</button></Link>
+      <Link to="/book-form"><button className="btn btn-success">Click here to begin</button></Link>
     </div>
   );
 }

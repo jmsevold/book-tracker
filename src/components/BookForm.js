@@ -5,7 +5,7 @@ class BookForm extends Component{
   constructor(props,context){
     super(props,context);
     this.state = {
-      book: { 
+      book: {
             title: '',
             totalPages: 0,
             dailyGoal: 0,
@@ -51,8 +51,8 @@ class BookForm extends Component{
   handleCheckState(){
     console.log(this.state);
   }
-  
-  
+
+
   render(){
   return(
     <div>
@@ -62,7 +62,7 @@ class BookForm extends Component{
       Daily Goal: <input type="text" onChange={this.handleDailyGoalChange}/><br/>
       Starting Page: <input type="text" onChange={this.handleStartingPageChange}/><br/>
       Total length of book: <input type="text" onChange={this.handleTotalPageChange}/><br/>
-      <button onClick={this.handleCheckState}>check state</button>
+    <button className="btn btn-primary" onClick={this.handleCheckState}>check state</button>
     </div>
   );
  }
