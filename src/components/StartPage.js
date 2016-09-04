@@ -1,14 +1,34 @@
 import React from 'react';
-import {Link} from 'react-router';
 
 
-const StartPage = () => {
-  return(
-    <div>
-      <p>This app will help you stay consistent in reading your books.</p>
-      <Link to="/book-form"><button className="btn btn-success">Click here to begin</button></Link>
-    </div>
-  );
+
+class StartPage extends React.Component{
+  constructor(props,context){
+    super(props,context);
+  }
+
+  render(){
+    return(
+      <div>
+      <p>What book are you reading?</p>
+       <div className="col-md-6">
+        <input type="text" placeholder="" className="form-control input-md" required=""/>
+       </div>
+      </div>
+    );
+  }
 }
 
+
 export default StartPage;
+
+
+
+
+
+
+
+
+
+
+

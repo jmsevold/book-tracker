@@ -57,27 +57,27 @@ class BookForm extends Component{
 
 
   render(){
-  return(
-    <div>
-      <h2>Realistically, how many minutes can you commit to reading per day? Step away from the computer, and see how many pages you can read in that duration. That should be your daily goal.</h2>
-      
-      <div className="container-fluid">
-        <label>Title:</label>
-        <input type="text" className="form-control" onChange={this.handleTitleChange}/>
-      
-      
-        <label>Daily Goal:</label>
-        <input type="text" className="form-control" onChange={this.handleDailyGoalChange}/>
-      
-        <label>Starting Page</label>
-        <input type="text" className="form-control" onChange={this.handleStartingPageChange}/>
-      
-        <label>Total Pages</label>
-        <input type="text" className="form-control" onChange={this.handleTotalPageChange}/>
+    return(
+      <div>
+        <h2>Realistically, how many minutes can you commit to reading per day? Step away from the computer, and see how many pages you can read in that duration. That should be your daily goal.</h2>
+        
+        <div className="container-fluid">
+          <label>Title:</label>
+          <input type="text" className="form-control" onChange={this.handleTitleChange}/>
+        
+        
+          <label>Daily Goal:</label>
+          <input type="text" className="form-control" onChange={this.handleDailyGoalChange}/>
+        
+          <label>Starting Page</label>
+          <input type="text" className="form-control" onChange={this.handleStartingPageChange}/>
+        
+          <label>Total Pages</label>
+          <input type="text" className="form-control" onChange={this.handleTotalPageChange}/>
+        </div>
+        <button className="btn btn-success" onClick={this.handleCheckState}>Submit</button>
       </div>
-      <button className="btn btn-success" onClick={this.handleCheckState}>Submit</button>
-    </div>
-  );
+    );
  }
 }
 
