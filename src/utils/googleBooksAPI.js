@@ -8,7 +8,7 @@ export function getBookInfo(book){
     return results.data.items.map((book) => {
       return {
         title: book.volumeInfo.title,
-        pageCount: book.volumeInfo.title,
+        pageCount: book.volumeInfo.pageCount,
         thumbnail: book.volumeInfo.imageLinks.thumbnail
       }
     });
