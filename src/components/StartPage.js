@@ -34,7 +34,7 @@ class StartPage extends React.Component{
   render(){
     return(
       <div>
-      <p>What book are you reading?!</p>
+      <p>What book are you reading?</p>
        <div className="col-md-7">
         <input type="text" placeholder="" className="form-control input-md" onChange={this.handleTextChange}/>
         <button className='btn-success' onClick={this.handleButtonClick}></button>

@@ -5,7 +5,13 @@ const API_KEY = 'AIzaSyDI6ELm8AYM_vLDy3xJNSP6csRkV_x6Mt0';
 export function getBookInfo(book){
   return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${book}&key=${API_KEY}`)
   .then(results => {
-    return results;
+    return results.data.items.map((book) => {
+      return {
+        title: book.volumeInfo.title,
+        pageCount: book.volumeInfo.title,
+        thumbnail: book.volumeInfo.imageLinks.thumbnail
+      }
+    });
   });
 }
 
