@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-/*
-
-
-*/
 class BookForm extends Component{
   constructor(props,context){
     super(props,context);
