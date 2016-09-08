@@ -1,19 +1,33 @@
 import axios from 'axios';
 
-const API_KEY = '';
 
-export function getBookInfo(book){
-  return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${book}&key=${API_KEY}`)
-  .then(results => {
-    return results.data.items.map((book) => {
-      return {
-        title: book.volumeInfo.title,
-        pageCount: book.volumeInfo.pageCount,
-        thumbnail: book.volumeInfo.imageLinks.thumbnail
-      }
-    });
-  });
+const formatUserQuery = (str) => {
+  return /\s/ig.test(str) ? str.replace(/\s/ig, "+") : str
 }
 
+const checkResponseCode = (res) => {
+  if(res.status === 200) {
+    return res.data.items
+  }
+  else {
+    return {error: "No books we're found"}
+  }
+}
 
+const getTitlesAndThumbnailFromBooks = (books) => {
+  for(var {volumeInfo: {title, imageLinks} } of books) {
+    return {title: title, thumbnail: imageLinks.thumbnail}
+  }
+}
 
+export function getBookInfo(book) {
+  let googleApiUrl = `https://www.googleapis.com/books/v1/volumes?`
+  let userQuery = "q=" + formatUserQuery(book) + "&"
+  const apiKey = ''
+  let params = `maxResults=10&orderBy=relevance&printType=books`
+  let apiKey = `&key=${apiKey}`
+  let newUrl = `${googleApiUrl}${userQuery}${params}${apiKey}`
+  return axios.get(newUrl)
+    .then(res => checkResponseCode(res))
+      .then(books => getTitlesAndThumbnailFromBooks(books))
+}
