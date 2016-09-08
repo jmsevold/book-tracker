@@ -9,17 +9,27 @@ class StartPage extends React.Component{
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.state = {
-     book: ''
+     books: [],
+     book: "",
+     showLoadingSpinner: false
     };
   }
-  
+
 
   handleButtonClick(){
     const book = this.state.book;
-    console.log('hi')
-    googleBooksAPI.getBookInfo(book)
-    .then(data => {
-      console.log(data);
+    this.setState({showLoadingSpinner: true})
+    googleBooksAPI.getBookInfo(book).then((res) => {
+      if(res.hasOwnProperty("error")) {
+        return null
+      }
+      else {
+        let oldBookState = this.state.books;
+        oldBookState.push(res)
+        let newBookstate = oldBookState
+        this.setState({books: newBookstate})
+        this.setState({showLoadingSpinner: false})
+      }
     })
   }
 
@@ -28,17 +38,57 @@ class StartPage extends React.Component{
     this.setState({
       book: book
     });
-    console.log(this.state.book);
+  }
+
+  renderFormOrList() {
+    if(this.state.books.length > 0) {
+      return (
+        <div className="col-xs-3">
+          {
+            this.state.books.map((book, index) => {
+              return (
+                <div key={index}>
+                  <img alt="book thumbnail" src={book.thumbnail}></img>
+                  <p>{book.title}</p>
+                </div>
+              )
+            })
+          }
+        </div>
+      )
+    }
+
+    else {
+      return (
+        <div className="col-md-7 col-md-push-3">
+          <p id="sub-headline-text" className="text-center">What book are you reading?</p>
+          <input type="text" placeholder="" className="form-control input-md" onChange={this.handleTextChange}/>
+          <button id="find-book-button" className='btn btn-success' onClick={this.handleButtonClick}>Find Book</button>
+        </div>
+      )
+    }
+  }
+
+  toggleLoadingSpinner() {
+    if(this.state.showLoadingSpinner) {
+      return (
+        <img alt="loading gif" src="https://popp.undp.org/Style%20Library/POPP/images/load.gif"></img>
+      )
+    }
+    else {
+      return null
+    }
   }
 
   render(){
     return(
-      <div>
-      <p>What book are you reading?</p>
-       <div className="col-md-7">
-        <input type="text" placeholder="" className="form-control input-md" onChange={this.handleTextChange}/>
-        <button className='btn-success' onClick={this.handleButtonClick}></button>
-       </div>
+      <div id="book-container">
+        <div className="container">
+          <div className="row">
+            {this.toggleLoadingSpinner()}
+            {this.renderFormOrList()}
+          </div>
+        </div>
       </div>
     );
   }
@@ -46,14 +96,3 @@ class StartPage extends React.Component{
 
 
 export default StartPage;
-
-
-
-
-
-
-
-
-
-
-
