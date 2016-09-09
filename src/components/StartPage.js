@@ -19,7 +19,7 @@ class StartPage extends React.Component{
   handleButtonClick(){
     const book = this.state.book;
     this.setState({showLoadingSpinner: true})
-    googleBooksAPI.getBookInfo(book).then((res) => {
+    googleBooksAPI.bookSearch(book).then((res) => {
       if(res.hasOwnProperty("error")) {
         return null
       }
