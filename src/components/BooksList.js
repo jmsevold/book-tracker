@@ -1,6 +1,8 @@
 import React from 'react';
+import BookForm from './BookForm';
 
-const BooksList = ({books}) => {
+
+const BooksList = ({books, toggleEnableForm}) => {
   return(
     <div className="col-xs-3">
       {
@@ -13,6 +15,8 @@ const BooksList = ({books}) => {
           )
         })
       }
+      <a><span className='glyphicon glyphicon-plus' onClick={toggleEnableForm}/></a>
+      Add Book
     </div>
   );
 };
