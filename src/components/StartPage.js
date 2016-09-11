@@ -1,5 +1,6 @@
 import React from 'react';
 import * as googleBooksAPI from '../utils/googleBooksAPI';
+import BooksList from './BooksList';
 
 
 
@@ -7,11 +8,12 @@ class StartPage extends React.Component{
   constructor(props,context){
     super(props,context);
     this.handleButtonClick = this.handleButtonClick.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleTextChange  = this.handleTextChange.bind(this);
     this.state = {
-     books: [],
-     book: "",
-     showLoadingSpinner: false
+      books: [],
+      book: "",
+      showLoadingSpinner: false,
+      formEnabled: true
     };
   }
 
@@ -19,42 +21,30 @@ class StartPage extends React.Component{
   handleButtonClick(){
     const book = this.state.book;
     this.setState({showLoadingSpinner: true})
-    googleBooksAPI.bookSearch(book).then((res) => {
-      if(res.hasOwnProperty("error")) {
-        return null
-      }
-      else {
-        let oldBookState = this.state.books;
-        oldBookState.push(res)
-        let newBookstate = oldBookState
-        this.setState({books: newBookstate})
-        this.setState({showLoadingSpinner: false})
-      }
+    
+    googleBooksAPI.bookSearch(book).then((book) => {
+      let oldBookState = this.state.books;
+      oldBookState.push(book)
+      let newBookstate = oldBookState;
+      this.setState({
+        showLoadingSpinner: false,
+        books: newBookstate,
+        formEnabled: false
+      });
     })
   }
 
   handleTextChange(e){
-    let book = e.target.value;
+    const book = e.target.value;
     this.setState({
       book: book
     });
   }
 
   renderFormOrList() {
-    if(this.state.books.length > 0) {
+    if(this.state.books.length > 0 && !this.state.formEnabled) {
       return (
-        <div className="col-xs-3">
-          {
-            this.state.books.map((book, index) => {
-              return (
-                <div key={index}>
-                  <img alt="book thumbnail" src={book.thumbnail}></img>
-                  <p>{book.title}</p>
-                </div>
-              )
-            })
-          }
-        </div>
+        <BooksList books={this.state.books}/>
       )
     }
 
