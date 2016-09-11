@@ -1,20 +1,22 @@
 import React from 'react';
 import * as googleBooksAPI from '../utils/googleBooksAPI';
 import BooksList from './BooksList';
+import BookForm from './BookForm';
 
 
 
 class StartPage extends React.Component{
   constructor(props,context){
     super(props,context);
-    this.handleButtonClick = this.handleButtonClick.bind(this);
-    this.handleTextChange  = this.handleTextChange.bind(this);
     this.state = {
       books: [],
       book: "",
       showLoadingSpinner: false,
       formEnabled: true
     };
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleTextChange  = this.handleTextChange.bind(this);
+    this.toggleEnableForm  = this.toggleEnableForm.bind(this);
   }
 
 
@@ -34,6 +36,12 @@ class StartPage extends React.Component{
     })
   }
 
+  toggleEnableForm(){
+    this.setState({
+      formEnabled: !this.state.formEnabled
+    });
+  }
+
   handleTextChange(e){
     const book = e.target.value;
     this.setState({
@@ -41,25 +49,7 @@ class StartPage extends React.Component{
     });
   }
 
-  renderFormOrList() {
-    if(this.state.books.length > 0 && !this.state.formEnabled) {
-      return (
-        <BooksList books={this.state.books}/>
-      )
-    }
-
-    else {
-      return (
-        <div className="col-md-7 col-md-push-3">
-          <p id="sub-headline-text" className="text-center">What book are you reading?</p>
-          <input type="text" placeholder="" className="form-control input-md" onChange={this.handleTextChange}/>
-          <button id="find-book-button" className='btn btn-success' onClick={this.handleButtonClick}>Find Book</button>
-        </div>
-      )
-    }
-  }
-
-  toggleLoadingSpinner() {
+   toggleLoadingSpinner() {
     if(this.state.showLoadingSpinner) {
       return (
         <img alt="loading gif" src="https://popp.undp.org/Style%20Library/POPP/images/load.gif"></img>
@@ -69,6 +59,22 @@ class StartPage extends React.Component{
       return null
     }
   }
+
+  renderFormOrList() {
+    if(this.state.books.length > 0 && !this.state.formEnabled) {
+      return (
+        <BooksList books={this.state.books} toggleEnableForm={this.toggleEnableForm}/>
+      )
+    }
+
+    else {
+      return (
+        <BookForm handleTextChange={this.handleTextChange} handleButtonClick={this.handleButtonClick}/>
+      )
+    }
+  }
+
+ 
 
   render(){
     return(
