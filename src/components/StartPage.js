@@ -61,15 +61,15 @@ class StartPage extends React.Component{
   }
 
   renderFormOrList() {
-    if(this.state.books.length > 0 && !this.state.formEnabled) {
+    if(this.state.formEnabled) {
       return (
-        <BooksList books={this.state.books} toggleEnableForm={this.toggleEnableForm}/>
+        <BookForm handleTextChange={this.handleTextChange} handleButtonClick={this.handleButtonClick}/>
       )
     }
 
     else {
       return (
-        <BookForm handleTextChange={this.handleTextChange} handleButtonClick={this.handleButtonClick}/>
+        <BooksList books={this.state.books} toggleEnableForm={this.toggleEnableForm}/>
       )
     }
   }
