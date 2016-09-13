@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App';
-import BookForm from './components/BookForm';
+import React     from 'react';
+import ReactDOM  from 'react-dom';
+import App       from './components/App';
+import BookForm  from './components/BookForm';
 import StartPage from './components/StartPage';
+import BookGoal  from  './components/BookGoal';
 import './index.css';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router'
 
