@@ -40,6 +40,7 @@ class StartPage extends React.Component{
     this.setState({
       formEnabled: !this.state.formEnabled
     });
+
   }
 
   handleTextChange(e){
@@ -61,7 +62,7 @@ class StartPage extends React.Component{
   }
 
   renderFormOrList() {
-    if(this.state.formEnabled) {
+    if(this.state.formEnabled){
       return (
         <BookForm handleTextChange={this.handleTextChange} handleButtonClick={this.handleButtonClick}/>
       )
