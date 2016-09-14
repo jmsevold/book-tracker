@@ -78,6 +78,7 @@ class StartPage extends React.Component{
  
 
   render(){
+    console.log(this.state.formEnabled)
     return(
       <div id="book-container">
         <div className="container">
