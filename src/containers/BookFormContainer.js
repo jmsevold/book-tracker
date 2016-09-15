@@ -1,8 +1,7 @@
 import React from 'react';
 import * as googleBooksAPI from '../utils/googleBooksAPI';
 import BookForm from '../components/BookForm';
-
-
+import {browserHistory} from 'react-router';
 
 class BookFormContainer extends React.Component{
   constructor(props,context){
@@ -22,6 +21,8 @@ class BookFormContainer extends React.Component{
       this.setState({
         book
       });
+      //this.context.router.push(`/my-books`);
+      //browserHistory.push('/some/path');
     });
   }
 
