@@ -4,7 +4,7 @@ import BookForm from '../components/BookForm';
 
 
 
-class BookForm extends React.Component{
+class BookFormContainer extends React.Component{
   constructor(props,context){
     super(props,context);
     this.state = {
@@ -42,4 +42,4 @@ class BookForm extends React.Component{
 }
 
 
-export default BookForm;
+export default BookFormContainer;
