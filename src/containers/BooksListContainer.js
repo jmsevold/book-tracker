@@ -1,6 +1,6 @@
 import React from 'react';
 import BooksList from '../components/BooksList';
-import books from '../mockBooks.js';
+import books from '../mockBooks';
 
 
 class BooksListContainer extends React.Component{

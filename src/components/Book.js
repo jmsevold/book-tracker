@@ -1,9 +1,11 @@
 import React from 'react';
-// clicking on the image should lead to BookGoal
+import {Link} from 'react-router';
+
+
 const book = ({index,book}) => {
   return(
     <div key={index}>
-      <img alt="book thumbnail" src={book.thumbnail}></img>
+      <Link to="/progress/1"><img alt="book thumbnail" src={book.thumbnail}></img></Link>
       <p>{book.title}</p>
     </div>  
   );
