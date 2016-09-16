@@ -4,7 +4,7 @@ import App                from './containers/App';
 import BookFormContainer  from './containers/BookFormContainer';
 import BooksListContainer from './containers/BooksListContainer';
 import StartPage          from './components/StartPage';
-import BookGoal           from  './components/BookGoal';
+import BookProgressContainer           from  './containers/BookProgressContainer';
 import './index.css';
 import {Router, Route, hashHistory, IndexRoute, browserHistory} from 'react-router';
 
@@ -16,7 +16,7 @@ ReactDOM.render(
       <IndexRoute component={StartPage}></IndexRoute>
       <Route path="/book-form" component={BookFormContainer}></Route>
       <Route path="/my-books" component={BooksListContainer}></Route>
-      <Route path="/progress/:bookId" component={BookGoal}></Route>
+      <Route path="/progress/:bookId" component={BookProgressContainer}></Route>
     </Route>
   </Router>,
   document.getElementById('root')

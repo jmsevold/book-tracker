@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-
-const book = ({index,book}) => {
+const book = ({key,book}) => {
   return(
-    <div key={index}>
-      <Link to="/progress/1"><img alt="book thumbnail" src={book.thumbnail}></img></Link>
+    <div key={key}>
+      <Link to={`/progress/${key}`}><img alt="book thumbnail" src={book.thumbnail}></img></Link>
       <p>{book.title}</p>
+      <p>key is{key}</p>
     </div>  
   );
 };
