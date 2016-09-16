@@ -8,7 +8,7 @@ import BookProgressContainer           from  './containers/BookProgressContainer
 import './index.css';
 import {Router, Route, hashHistory, IndexRoute, browserHistory} from 'react-router';
 
-//this.props.params.bookId availiable in BookGoal
+
 
 ReactDOM.render(
   <Router history={hashHistory}>
