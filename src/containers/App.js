@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import Header from '../components/common/Header'
 import {Link} from 'react-router';
 
 
@@ -11,15 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12 text-center">
-                <Link to="/"><h2>Welcome to Book Tracker!</h2></Link>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Header/>
         {this.props.children}
       </div>
     );
