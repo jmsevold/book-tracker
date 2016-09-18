@@ -21,7 +21,6 @@ class BookFormContainer extends React.Component{
       this.setState({
         book
       });
-      console.log(this.state);
       //this.context.router.push(`/my-books`);
       //browserHistory.push('/some/path');
     });
