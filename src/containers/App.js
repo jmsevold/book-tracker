@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import Header from '../components/common/Header'
-import {Link} from 'react-router';
+
 
 
 class App extends Component {

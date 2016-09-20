@@ -1,7 +1,7 @@
 import React from 'react';
-import * as googleBooksAPI from '../utils/googleBooksAPI';
 import BookForm from '../components/BookForm';
-import {browserHistory} from 'react-router';
+import * as bookActions from '../actions/bookActions';
+import {connect} from 'react-redux';
 
 class BookFormContainer extends React.Component{
   constructor(props,context){
@@ -17,13 +17,8 @@ class BookFormContainer extends React.Component{
 
   handleButtonClick(){
     const bookQuery = this.state.bookQuery;
-    googleBooksAPI.bookSearch(bookQuery).then((book) => {
-      this.setState({
-        book
-      });
-      //this.context.router.push(`/my-books`);
-      //browserHistory.push('/some/path');
-    });
+    this.props.addBook(bookQuery);
+    console.log(this.props);
   }
 
 
@@ -42,5 +37,15 @@ class BookFormContainer extends React.Component{
   }
 }
 
+function mapStateToProps(state, ownProps){
+  return {
+    books: state.books
+  };
+}
 
-export default BookFormContainer;
+function mapDispatchToProps(dispatch){
+  return{
+    addBook: book => dispatch(bookActions.addBook(book))
+  };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(BookFormContainer);
