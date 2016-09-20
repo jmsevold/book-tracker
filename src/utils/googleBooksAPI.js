@@ -14,12 +14,12 @@ const extractBookInfo = (books) => {
 }
 
 const constructQuery = (book) => {
-  let googleApiUrl = `https://www.googleapis.com/books/v1/volumes?`
-  let userQuery = formatUserQuery(book)
-  const apiKey = 'AIzaSyDI6ELm8AYM_vLDy3xJNSP6csRkV_x6Mt0';
-  let params = `maxResults=10&orderBy=relevance&printType=books`
-  let key = `&key=${apiKey}`
-  let url = `${googleApiUrl}${userQuery}${params}${key}`
+  let googleApiUrl   = `https://www.googleapis.com/books/v1/volumes?`
+  let userQuery      = formatUserQuery(book)
+  const apiKey       = 'AIzaSyDI6ELm8AYM_vLDy3xJNSP6csRkV_x6Mt0';
+  let params         = `maxResults=10&orderBy=relevance&printType=books`
+  let key            = `&key=${apiKey}`
+  let url            = `${googleApiUrl}${userQuery}${params}${key}`
   return url;
 }
 
