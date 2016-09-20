@@ -1,8 +1,7 @@
 import React from 'react';
 import BookProgress from '../components/BookProgress';
 import books from '../mockBooks';
-//const book = books[0];
-//this.props.params.bookId
+
 
 class BooksProgressContainer extends React.Component{
   constructor(props,context){
