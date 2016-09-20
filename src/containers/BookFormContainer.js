@@ -18,7 +18,6 @@ class BookFormContainer extends React.Component{
   handleButtonClick(){
     const bookQuery = this.state.bookQuery;
     this.props.addBook(bookQuery);
-    console.log(this.props);
   }
 
 
