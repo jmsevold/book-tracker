@@ -1,6 +1,6 @@
 import React from 'react';
 import BookProgress from '../components/BookProgress';
-import books from '../mockBooks';
+import books from '../data/mockBooks';
 
 
 class BooksProgressContainer extends React.Component{
