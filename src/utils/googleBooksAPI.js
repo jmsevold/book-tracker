@@ -27,5 +27,5 @@ export function bookSearch(book) {
   let url = constructQuery(book);
   return axios.get(url)
     .then(res => extractBookInfo(res.data.items))
-    .catch(error =>  {error: "No books were found"});
+    .catch(error =>  {error1: "No books were found"});
 }

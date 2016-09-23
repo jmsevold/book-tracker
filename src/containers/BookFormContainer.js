@@ -1,23 +1,30 @@
 import React from 'react';
 import BookForm from '../components/BookForm';
 import * as bookActions from '../actions/bookActions';
+import * as googleBooksAPI from '../utils/googleBooksAPI';
 import {connect} from 'react-redux';
 
 class BookFormContainer extends React.Component{
   constructor(props,context){
     super(props,context);
     this.state = {
-      book: {},
+      book: null,
       bookQuery: ''
     };
-    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleFindBook = this.handleFindBook.bind(this);
     this.handleTextChange  = this.handleTextChange.bind(this);
   }
 
 
-  handleButtonClick(){
+  handleFindBook(){
     const bookQuery = this.state.bookQuery;
-    this.props.addBook(bookQuery);
+    googleBooksAPI.bookSearch(bookQuery).then(book => {
+      this.setState({
+        book
+      });
+    }).catch(error => {
+      throw(error);
+    });
   }
 
 
@@ -28,10 +35,24 @@ class BookFormContainer extends React.Component{
       bookQuery: bookQuery
     });
   }
+  
+  renderForms(){
+    if(!this.state.book){
+      return(
+        <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
+      );
+    }
+    else{
+      <div>
+        <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
+        <SecondForm/>
+      </div>
+    }
+  }
 
   render(){
     return(
-      <BookForm handleTextChange={this.handleTextChange} handleButtonClick={this.handleButtonClick}/>
+      <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
     );
   }
 }

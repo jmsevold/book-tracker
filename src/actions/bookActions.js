@@ -1,21 +1,12 @@
 import * as types from './actionTypes';
-import * as googleBooksAPI from '../utils/googleBooksAPI';
 
-export function addBookSuccess(book){
+
+export function addBook(book){
   return {
-    type: types.ADD_BOOK_SUCCESS,
+    type: types.ADD_BOOK,
     book 
-  }
-}
-
-
-
-export function addBook(bookQuery) {
-  return function(dispatch) {
-    return googleBooksAPI.bookSearch(bookQuery).then(book => {
-      dispatch(addBookSuccess(book));
-    }).catch(error => {
-      throw(error);
-    });
   };
 }
+
+
+
