@@ -1,5 +1,6 @@
 import React from 'react';
 import BookForm from '../components/BookForm';
+import SecondForm from '../components/SecondForm';
 import * as bookActions from '../actions/bookActions';
 import * as googleBooksAPI from '../utils/googleBooksAPI';
 import {connect} from 'react-redux';
@@ -19,6 +20,7 @@ class BookFormContainer extends React.Component{
     this.handleRemoveBook   = this.handleRemoveBook.bind(this);
   }
 
+  // SecondForm handlers
   handleRemoveBook(){
     this.setState({
       book: null
@@ -37,7 +39,7 @@ class BookFormContainer extends React.Component{
     });
   }
 
-  handleStartingPage(){
+  handleStartingPage(e){
     let book      = this.state.book;
     book.initialStartPage = e.target.value;
     this.setState({
@@ -45,6 +47,7 @@ class BookFormContainer extends React.Component{
     });
   }
 
+  // BookForm Handlers
   handleFindBook(){
     const bookQuery = this.state.bookQuery;
     googleBooksAPI.bookSearch(bookQuery).then(book => {
@@ -72,22 +75,24 @@ class BookFormContainer extends React.Component{
       );
     }
     else{
-      <div>
-        <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
-        <SecondForm 
-          handleDailyPages={this.handleDailyPages} 
-          handleStartingPages={this.handleStartingPages}
-          handleSubmitBook={this.handleSubmitBook} 
-          handleRemoveBook={this.handleRemoveBook}
-          book={this.state.book}
-        />
-      </div>
+      return(
+        <div>
+          <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
+          <SecondForm 
+            handleDailyPages={this.handleDailyPages} 
+            handleStartingPages={this.handleStartingPages}
+            handleSubmitBook={this.handleSubmitBook} 
+            handleRemoveBook={this.handleRemoveBook}
+            book={this.state.book}
+          />
+        </div>
+      );
     }
   }
 
   render(){
     return(
-      renderForms();
+      this.renderForms()
     );
   }
 }
