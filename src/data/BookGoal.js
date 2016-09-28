@@ -3,16 +3,16 @@ export default class BookGoal {
     this.title     = bookData.title;
     this.thumbnail = bookData.thumbnail;
     this.pageCount = bookData.pageCount;
-    this.pageRate  = 0;
+    this.pageRate  = parseInt(bookData.pageRate) || 0;
     this.startDate = null;
-    this.initialStartPage   = 0;
-    this.todaysStartingPage = null;
-    this.todaysEndingPage   = null;
+    this.initialStartPage   = parseInt(bookData.initialStartPage);
+    this.todaysStartingPage = this.initialStartPage;
+    this.todaysEndingPage   = this.todaysStartingPage + this.pageRate;
     this.completionDate     = null;
-    this.percentageRead     = null;
+    this.percentageRead     = this.calculatePercentageRead();
   }
   
-  percentageRead(){
+  calculatePercentageRead(){
     this.todaysStartingPage ? Math.floor((this.todaysStartingPage / this.pageCount) * 100) : 0;
   }
   
@@ -23,6 +23,10 @@ export default class BookGoal {
   setCompletionDate(){
     // const readingDays  = Math.Floor(pageCount / (pageRate - initialStartPage))  // will work even if startPage is 0
     //this.completionDate = this.startDate + readingDays
+  }
+  
+  setStartDate(){
+    // current date from Moment.js
   }
   
   finishedBook(){

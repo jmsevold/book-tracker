@@ -28,6 +28,7 @@ class BookFormContainer extends React.Component{
   }
 
   handleSubmitBook(){
+    console.log(this.state.book);
     this.props.addBook(this.state.book);
   }
 
@@ -80,7 +81,7 @@ class BookFormContainer extends React.Component{
           <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
           <SecondForm 
             handleDailyPages={this.handleDailyPages} 
-            handleStartingPages={this.handleStartingPages}
+            handleStartingPage={this.handleStartingPage}
             handleSubmitBook={this.handleSubmitBook} 
             handleRemoveBook={this.handleRemoveBook}
             book={this.state.book}

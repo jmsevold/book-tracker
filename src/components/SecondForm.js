@@ -9,7 +9,7 @@ const SecondForm = (props) =>{
             <p id="sub-headline-text" className="text-center">How many pages will you read per day?</p>
             <input type="text" placeholder="" className="form-control input-md" onChange={props.handleDailyPages}/>
             <p className="text-center">What page are you starting at?</p>
-            <input type="text" placeholder="" className="form-control input-md" onChange={props.startingPage}/>
+            <input type="text" placeholder="" className="form-control input-md" onChange={props.handleStartingPage}/>
             <button className='btn btn-success submit-button' onClick={props.handleSubmitBook}>Submit</button>
             <button></button>
           </div>
