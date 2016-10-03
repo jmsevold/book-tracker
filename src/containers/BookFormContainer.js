@@ -3,6 +3,7 @@ import BookForm from '../components/BookForm';
 import SecondForm from '../components/SecondForm';
 import * as bookActions from '../actions/bookActions';
 import * as googleBooksAPI from '../utils/googleBooksAPI';
+import BookGoal from '../data/BookGoal';
 import {connect} from 'react-redux';
 
 class BookFormContainer extends React.Component{
@@ -28,8 +29,8 @@ class BookFormContainer extends React.Component{
   }
 
   handleSubmitBook(){
-    console.log(this.state.book);
-    this.props.addBook(this.state.book);
+    let bookGoal = new BookGoal(this.state.book);
+    this.props.addBook(bookGoal);
   }
 
   handleDailyPages(e){

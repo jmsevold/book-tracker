@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 export default class BookGoal {
   constructor(bookData){
     this.title     = bookData.title;
@@ -10,51 +12,35 @@ export default class BookGoal {
     this.todaysEndingPage   = this.todaysStartingPage + this.pageRate;
     this.completionDate     = null;
     this.percentageRead     = this.calculatePercentageRead();
+    this.setDates();
   }
   
   calculatePercentageRead(){
-    this.todaysStartingPage ? Math.floor((this.todaysStartingPage / this.pageCount) * 100) : 0;
+    return this.todaysStartingPage ? Math.floor((this.todaysStartingPage / this.pageCount) * 100) : 0;
   }
   
   incrementStartingandEndingPage(){
-    // increment by page rate
+    // increment today's start and end date by the page rate 
+    // this actually might be the work of the chron job, and this method will just read that data
+    console.log('incrementing');
   }
   
   setCompletionDate(){
-    // const readingDays  = Math.Floor(pageCount / (pageRate - initialStartPage))  // will work even if startPage is 0
-    //this.completionDate = this.startDate + readingDays
+    const readingDays   = Math.floor((this.pageCount - this.initialStartPage) / this.pageRate);  
+    this.completionDate = this.startDate.clone().add(readingDays,'d');
   }
   
   setStartDate(){
-    // current date from Moment.js
+    this.startDate = moment();
   }
   
   finishedBook(){
-    // today's date > Completion Date
+    return moment().isAfter(this.completionDate);
+  }
+  
+  setDates(){
+    this.setStartDate();
+    this.setCompletionDate();
   }
   
 }
-
-/*
-
-- pageRate set by user input
-
-- startDate should be set on the bookData object upon creation
-.
-
-*/
-
-
-// {
-//     title: "Harry Potter and the Prisoner of Azkaban",
-//     pageCount: 448,
-//     thumbnail:"http://books.google.com/books/content?id=Sm5AKLXKxHgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-//     startDate:"October 31st, 2016",
-//     todaysStartingPage: 100,
-//     pageRate: 10,
-//     todaysEndingPage: 110,
-//     completionDate: "November 6th, 2016",
-//     percentageRead: Math.floor((100 / 448) * 100)
-//   }
-
-
