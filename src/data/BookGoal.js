@@ -5,7 +5,7 @@ export default class BookGoal {
     this.title     = bookData.title;
     this.thumbnail = bookData.thumbnail;
     this.pageCount = bookData.pageCount;
-    this.pageRate  = parseInt(bookData.pageRate) || 0;
+    this.pageRate  = parseInt(bookData.pageRate);
     this.startDate = null;
     this.initialStartPage   = parseInt(bookData.initialStartPage);
     this.todaysStartingPage = this.initialStartPage;
@@ -30,8 +30,16 @@ export default class BookGoal {
     this.completionDate = this.startDate.clone().add(readingDays,'d');
   }
   
+  displayCompletionDate(){
+    return this.completionDate.format("dddd, MMMM Do YYYY");
+  }
+  
   setStartDate(){
     this.startDate = moment();
+  }
+  
+  displayStartDate(){
+    return this.startDate.format("dddd, MMMM Do YYYY");
   }
   
   finishedBook(){

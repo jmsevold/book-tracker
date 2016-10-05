@@ -1,22 +1,27 @@
 import React from 'react';
 import BookProgress from '../components/BookProgress';
-import books from '../data/mockBooks';
+import {connect} from 'react-redux';
 
 
 class BooksProgressContainer extends React.Component{
   constructor(props,context){
     super(props,context);
-    this.state = {
-      book: books[this.props.params.bookId]
-    };
   }
 
   render(){
+    const bookIndex = this.props.params.bookId;
     return(
-      <BookProgress book={this.state.book}/>
+      <BookProgress book={this.props.books[bookIndex]}/>
     );
   }
 }
 
+function mapStateToProps(state, ownProps){
+  return {
+    books: state.books
+  };
+}
 
-export default BooksProgressContainer;
+
+export default connect(mapStateToProps)(BooksProgressContainer);
+

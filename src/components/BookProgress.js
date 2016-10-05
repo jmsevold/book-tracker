@@ -14,7 +14,7 @@ const BookProgress = ({book}) => {
       <p>Reading {book.pageRate} pages a day</p>
       <p>Starting on page: {book.todaysStartingPage}</p>
       <p>Ending on page: {book.todaysEndingPage}</p>
-      <p>Completion date:{book.completionDate}</p>
+      <p>Completion date:{book.displayCompletionDate}</p>
       <Link to="/my-books">Back to my books</Link>
     </div>
   );
