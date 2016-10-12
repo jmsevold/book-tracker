@@ -26,7 +26,7 @@ export default class BookGoal {
   }
   
   setCompletionDate(){
-    const readingDays   = Math.floor((this.pageCount - this.initialStartPage) / this.pageRate);  
+    const readingDays   = Math.floor((this.pageCount - this.todaysStartingPage) / this.pageRate);  
     this.completionDate = this.startDate.clone().add(readingDays,'d');
   }
   

@@ -11,10 +11,9 @@ const SecondForm = (props) =>{
             <p className="text-center">What page are you starting at?</p>
             <input type="text" placeholder="" className="form-control input-md" onChange={props.handleStartingPage}/>
             <button className='btn btn-success submit-button' onClick={props.handleSubmitBook}>Submit</button>
-            <button></button>
           </div>
         </div>
-        <div>
+        <div className="text-center">
           <img alt="book thumbnail" src={props.book.thumbnail}></img>
           <p>{props.book.title}</p>
           <button onClick={props.handleRemoveBook}>Remove Book</button>
