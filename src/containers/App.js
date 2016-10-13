@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import '../App.css';
-import Header from '../components/common/Header'
-
+import Header from '../components/common/Header';
+import {Link, withRouter} from 'react-router';
 
 
 class App extends Component {
-  constructor(props,context){
-    super(props,context);
+  constructor(props, context){
+    super(props, context);
+  }
+  goToPage() {
+    this.props.router.push('/book-form')
   }
 
   render() {

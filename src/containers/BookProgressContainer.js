@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 
 
 class BooksProgressContainer extends React.Component{
-  constructor(props,context){
-    super(props,context);
+  constructor(props, context){
+    super(props, context);
   }
 
   render(){
@@ -24,4 +24,3 @@ function mapStateToProps(state, ownProps){
 
 
 export default connect(mapStateToProps)(BooksProgressContainer);
-

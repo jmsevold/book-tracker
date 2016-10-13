@@ -2,13 +2,14 @@ import React from 'react';
 import BookForm from '../components/BookForm';
 import SecondForm from '../components/SecondForm';
 import * as bookActions from '../actions/bookActions';
-import * as googleBooksAPI from '../utils/googleBooksAPI';
 import BookGoal from '../data/BookGoal';
+import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 
 class BookFormContainer extends React.Component{
-  constructor(props,context){
-    super(props,context);
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       book: null,
       bookQuery: ''
@@ -22,18 +23,18 @@ class BookFormContainer extends React.Component{
   }
 
   // SecondForm handlers
-  handleRemoveBook(){
+  handleRemoveBook() {
     this.setState({
       book: null
     });
   }
 
-  handleSubmitBook(){
+  handleSubmitBook() {
     let bookGoal = new BookGoal(this.state.book);
-    this.props.addBook(bookGoal);
+    actions.loadBook(bookGoal)
   }
 
-  handleDailyPages(e){
+  handleDailyPages(e) {
     let book      = this.state.book;
     book.pageRate = e.target.value;
     this.setState({
@@ -41,7 +42,7 @@ class BookFormContainer extends React.Component{
     });
   }
 
-  handleStartingPage(e){
+  handleStartingPage(e) {
     let book      = this.state.book;
     book.initialStartPage = e.target.value;
     this.setState({
@@ -50,64 +51,38 @@ class BookFormContainer extends React.Component{
   }
 
   // BookForm Handlers
-  handleFindBook(){
+  handleFindBook() {
     const bookQuery = this.state.bookQuery;
-    googleBooksAPI.bookSearch(bookQuery).then(book => {
-      this.setState({
-        book
-      });
-    }).catch(error => {
-      throw(error);
-    });
+    const {actions} = this.props;
+    actions.loadBook(bookQuery)
+    this.props.router.push('/my-books')
   }
 
-
-
-  handleTextChange(e){
+  handleTextChange(e) {
     const bookQuery = e.target.value;
     this.setState({
       bookQuery: bookQuery
     });
   }
-  
-  renderForms(){
-    if(!this.state.book){
-      return(
-        <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
-      );
-    }
-    else{
-      return(
-        <div>
-          <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
-          <SecondForm 
-            handleDailyPages={this.handleDailyPages} 
-            handleStartingPage={this.handleStartingPage}
-            handleSubmitBook={this.handleSubmitBook} 
-            handleRemoveBook={this.handleRemoveBook}
-            book={this.state.book}
-          />
-        </div>
-      );
-    }
-  }
 
-  render(){
-    return(
-      this.renderForms()
+  render() {
+    return (
+      <div>
+        <BookForm handleTextChange={this.handleTextChange} handleFindBook={this.handleFindBook}/>
+      </div>
     );
   }
 }
 
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state, ownProps) {
   return {
     books: state.books
   };
 }
 
 function mapDispatchToProps(dispatch){
-  return{
-    addBook: book => dispatch(bookActions.addBook(book))
+  return {
+    actions: bindActionCreators(bookActions, dispatch)
   };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(BookFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(BookFormContainer));

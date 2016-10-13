@@ -7,11 +7,9 @@ import StartPage from './components/StartPage';
 import BookProgressContainer from  './containers/BookProgressContainer';
 import './index.css';
 import {Router, Route, hashHistory, IndexRoute, browserHistory} from 'react-router';
-// redux stuff
-import configureStore from './store/configureStore';
+import store from './store/configureStore';
 import {Provider} from 'react-redux';
 
-const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>

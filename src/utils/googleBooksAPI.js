@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const formatUserQuery = (str) => {
   let query =  /\s/ig.test(str) ? str.replace(/\s/ig, "+") : str;
   return `q=${query}&`;

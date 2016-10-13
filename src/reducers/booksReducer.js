@@ -1,9 +1,16 @@
 import * as actionTypes from '../actions/actionTypes';
 
-export default function bookReducer(state = [], action){
+export function books(state = {
+  fetchingBooks: false,
+  items: []
+}, action){
   switch (action.type){
-    case actionTypes.ADD_BOOK:
-      return [...state, Object.assign({}, action.book)];
+    case actionTypes.FETCH_BOOK:
+      console.log(action.books)
+      return Object.assign({}, state, {
+        fetchingBooks: false,
+        items: [].concat(action.books)
+      })
     default:
       return state;
   }

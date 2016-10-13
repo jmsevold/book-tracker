@@ -1,12 +1,17 @@
 import * as types from './actionTypes';
+import * as googleBooksAPI from '../utils/googleBooksAPI';
 
-
-export function addBook(book){
+export const fetchBooks = (books) => {
   return {
-    type: types.ADD_BOOK,
-    book 
-  };
+    type: types.FETCH_BOOK,
+    books
+  }
 }
 
-
-
+export const loadBook = (bookQuery) => {
+  return (dispatch, getState) => {
+    googleBooksAPI.bookSearch(bookQuery).then(books => {
+      dispatch(fetchBooks(books))
+    })
+  }
+}
